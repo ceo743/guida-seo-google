@@ -139,7 +139,7 @@
       <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:8px">Controlla la tua casella email, la guida sta arrivando.</p>
       <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:28px">Non la trovi? <strong style="color:rgba(255,255,255,0.8)">Controlla la cartella Spam o Promozioni</strong> e spostala nella posta in arrivo.</p>
       <a href="https://automazioni.davidecaiazzo.it/" class="btn-gold" style="font-size:12px;padding:18px 40px"><span>SCOPRI COME AUTOMATIZZIAMO TUTTO &rarr;</span></a>
-      <p style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:16px">Verrai reindirizzato automaticamente tra <span id="countdownSec">10</span> secondi</p>
+      <p style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:16px">Verrai reindirizzato automaticamente tra <span id="countdownSec">2</span> secondi</p>
     </div>
   </div>
 </div>
@@ -232,7 +232,7 @@ function submitForm(e){
   setTimeout(function(){
     document.getElementById('confirmModal').classList.add('open');
     // Countdown + auto-redirect
-    var sec = 10;
+    var sec = 2;
     var countEl = document.getElementById('countdownSec');
     var timer = setInterval(function(){
       sec--;
