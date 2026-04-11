@@ -16,12 +16,16 @@
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     html{overflow-x:hidden}
-    body{font-family:'Inter',sans-serif;background:#080b10;color:#fff;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    body{font-family:'Inter',sans-serif;background:#080b10;color:#fff;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column;align-items:center}
     a,button{cursor:pointer}
     ::selection{background:rgba(212,175,55,0.3);color:#fff}
 
     #particleCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
     #trailCanvas{position:fixed;inset:0;z-index:9999;pointer-events:none}
+    .footer-link{color:#D4AF37;text-decoration:none;transition:all 0.3s;opacity:0.7}
+    .footer-link:hover{opacity:1;text-shadow:0 0 8px rgba(212,175,55,0.4)}
+    .social-icon{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;text-decoration:none;transition:all 0.3s;opacity:0.8}
+    .social-icon:hover{opacity:1;transform:translateY(-3px);box-shadow:0 4px 15px rgba(0,0,0,0.4)}
 
     .gold{background:linear-gradient(135deg,#BF953F 0%,#FCF6BA 25%,#B38728 50%,#FBF5B7 75%,#AA771C 100%);background-size:400% 400%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:goldShimmer 6s ease infinite}
     @keyframes goldShimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
@@ -72,21 +76,29 @@
 <div class="orb" style="width:500px;height:500px;background:#127059;bottom:-250px;left:-200px;opacity:0.04;position:fixed"></div>
 
 <!-- ===== DISCLAIMER ===== -->
-<div style="padding:12px 32px;text-align:center">
-  <p style="font-size:14px;color:rgba(255,255,255,0.3);line-height:1.6;max-width:900px;margin:0 auto">I contenuti di questo sito hanno natura pubblicitaria a favore della DC Academy S.r.l.<br>Per qualsiasi approfondimento sui nostri servizi, clienti, testimonianze, testate e sui numeri citati su questo sito visita la pagina: www.davidecaiazzo.it/trasparenza</p>
+<div id="disclaimer" style="align-self:stretch;padding:12px 32px;text-align:center;background:#000;border-bottom:1px solid rgba(255,255,255,0.05)">
+  <p style="font-size:13px;font-family:monospace;color:rgba(255,255,255,0.4);line-height:1.6;max-width:900px;margin:0 auto">I contenuti di questo sito hanno natura pubblicitaria a favore della DC Academy S.r.l. &middot; Per qualsiasi approfondimento sui nostri servizi, clienti, testimonianze, testate e sui numeri citati su questo sito visita la pagina: www.davidecaiazzo.it/trasparenza</p>
 </div>
 
-<main style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px 20px;width:100%">
+<main style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%">
 
-  <div style="text-align:center;margin-bottom:32px;max-width:560px">
-    <p style="font-size:11px;text-transform:uppercase;letter-spacing:4px;color:#D4AF37;font-weight:600;margin-bottom:16px">Guida gratuita</p>
-    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);font-weight:900;line-height:1.1;margin-bottom:16px">
-      Diventa il <span class="gold">Numero 1 su Google</span><br>con la SEO
-    </h1>
-    <p style="font-size:clamp(14px,1.2vw,16px);color:rgba(255,255,255,0.5);line-height:1.7;font-weight:300">
-      Il sistema con Claude AI per dominare la SEO senza agenzie. Setup in 15 minuti, 25 articoli generati in un pomeriggio, 0&euro; di costo.
-    </p>
+  <!-- Hero con gradiente responsivo -->
+  <div style="align-self:stretch;position:relative;overflow:hidden;padding:clamp(24px,5vw,48px) 20px clamp(28px,5vw,48px);text-align:center;display:flex;flex-direction:column;align-items:center">
+    <!-- Gradiente da nero a oro sfumato -->
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,16,1) 0%,rgba(20,18,12,0.9) 40%,rgba(30,25,10,0.7) 70%,rgba(8,11,16,1) 100%);pointer-events:none"></div>
+    <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:120%;height:100%;background:radial-gradient(ellipse at center top,rgba(212,175,55,0.08) 0%,transparent 70%);pointer-events:none"></div>
+    <div style="position:relative;z-index:1;max-width:560px">
+      <p style="font-size:11px;text-transform:uppercase;letter-spacing:4px;color:#D4AF37;font-weight:600;margin-bottom:16px">Guida gratuita</p>
+      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);font-weight:900;line-height:1.1;margin-bottom:16px">
+        Diventa il <span class="gold">Numero 1 su Google</span><br>con la SEO
+      </h1>
+      <p style="font-size:clamp(14px,1.2vw,16px);color:rgba(255,255,255,0.5);line-height:1.7;font-weight:300">
+        Il sistema con Claude AI per dominare la SEO senza agenzie. Setup in 15 minuti, 25 articoli generati in un pomeriggio, 0&euro; di costo.
+      </p>
+    </div>
   </div>
+
+  <div style="height:32px"></div>
 
   <div class="card">
     <div class="form-wrap" id="formWrap">
@@ -125,8 +137,27 @@
     </div>
   </div>
 
-  <p style="margin-top:24px;font-size:12px;color:rgba(255,255,255,0.15)">DC Academy S.r.l. &mdash; P.IVA 16916171009</p>
 </main>
+
+<footer style="padding:40px 32px;border-top:1px solid rgba(212,175,55,0.1);text-align:center;position:relative;z-index:1">
+  <p style="font-size:11px;margin-bottom:16px">
+    <a href="https://docs.google.com/document/d/1qUNgRcZ0W9aZxutDu1Fv2k5aM6Nti4V0/edit" target="_blank" class="footer-link">Informativa Privacy</a> &nbsp;|&nbsp;
+    <a href="https://docs.google.com/document/d/1PTTs2QFMqBtZaefLHPrrfMxJRnlGewih/edit?usp=sharing&ouid=101002448876750781490&rtpof=true&sd=true" target="_blank" class="footer-link">Cookie Policy</a> &nbsp;|&nbsp;
+    <a href="https://docs.google.com/document/d/1K6WGjt9aFTRN-zWMvEOh5bw2A32nNag-/edit?usp=sharing&ouid=101002448876750781490&rtpof=true&sd=true" target="_blank" class="footer-link">Condizioni di Vendita</a>
+  </p>
+  <p style="font-size:12px;color:rgba(255,255,255,0.25);margin-bottom:20px">&copy; 2026 DC ACADEMY S.r.l. | P.IVA 05125350750 | info@davidecaiazzo.it | Via I. Adriano 9 | Lecce</p>
+  <div style="display:flex;justify-content:center;gap:16px">
+    <a href="https://www.instagram.com/davidecaiazzo_official" target="_blank" class="social-icon" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+    <a href="https://www.youtube.com/channel/UCTjgI7jliyFcO61LkeZbKCA?sub_confirmation=1" target="_blank" class="social-icon" style="background:#FF0000">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/davidecaiazzo/" target="_blank" class="social-icon" style="background:#0A66C2">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    </a>
+  </div>
+</footer>
 
 <!-- ===== CONFIRM MODAL (popup post-form) ===== -->
 <div class="confirm-modal" id="confirmModal">
