@@ -232,10 +232,20 @@ function submitForm(e){
   // Reset errors
   fields.forEach(function(f){f.classList.remove('error')});
   privacy.classList.remove('checkbox-error');
-  // Validate
+  // Validate empty
   fields.forEach(function(f){
     if(!f.value.trim()){f.classList.add('error');hasError=true}
   });
+  // Validate email format
+  var emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  if(form.email.value.trim() && !emailRegex.test(form.email.value.trim())){
+    form.email.classList.add('error');hasError=true;
+  }
+  // Validate phone (almeno 8 cifre, accetta +, spazi, trattini, parentesi)
+  var phoneDigits=form.phone.value.replace(/[^\d]/g,'');
+  if(form.phone.value.trim() && phoneDigits.length < 8){
+    form.phone.classList.add('error');hasError=true;
+  }
   if(!privacy.checked){privacy.classList.add('checkbox-error');hasError=true}
   if(hasError) return;
   // Clear errors on input
