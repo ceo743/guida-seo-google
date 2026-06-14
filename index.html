@@ -239,6 +239,7 @@ drawParticles();window.addEventListener('resize',drawParticles);
 })();
 
 // ===== FORM SUBMIT =====
+function dcPhoneOk(raw){var p=String(raw||'').replace(/[\s\-\+\.\(\)]/g,'');if(p.slice(0,2)==='00')p=p.slice(2);if(!/^\d+$/.test(p))return false;if(p.length<9||p.length>13)return false;if(/^(\d)\1+$/.test(p))return false;if('01234567890'.indexOf(p)>=0||'09876543210'.indexOf(p)>=0)return false;var u={},n=0,i;for(i=0;i<p.length;i++){if(!u[p[i]]){u[p[i]]=1;n++;}}if(n<3)return false;return true;}
 function submitForm(e){
   e.preventDefault();
   var form=document.getElementById('leadForm');
@@ -258,8 +259,7 @@ function submitForm(e){
     form.email.classList.add('error');hasError=true;
   }
   // Validate phone (almeno 8 cifre, accetta +, spazi, trattini, parentesi)
-  var phoneDigits=form.phone.value.replace(/[^\d]/g,'');
-  if(form.phone.value.trim() && phoneDigits.length < 8){
+  if(!dcPhoneOk(form.phone.value)){
     form.phone.classList.add('error');hasError=true;
   }
   if(!privacy.checked){privacy.classList.add('checkbox-error');hasError=true}
